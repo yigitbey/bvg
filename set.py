@@ -1,18 +1,15 @@
 from PIL import Image, ImageFont, ImageDraw
-from inky import inky
+from inky.auto import auto as inky_board
 import requests
 import arrow
 
-def set_display():
-    resolution = (212,104)
-    screen = inky.Inky(resolution=resolution,
-        colour='yellow',
-        h_flip=True,
-        v_flip=True)
-    return screen
+
+def get_board():
+    inky = board()
+    return inky
 
 def get_departures():
-    departures = requests.get("https://3.vbb.transport.rest/stops/900000110017/departures").json()
+    departures = requests.get("https://v3.bvg.transport.rest/stops/900000110017/departures").json()
     lst = []
     
     for d in departures:
@@ -43,6 +40,6 @@ def draw(screen, lst):
     screen.show()
 
 if __name__ == "__main__":
-    screen = set_display()
+    screen = get_board()
     lst = get_departures()
     draw(screen, lst)
