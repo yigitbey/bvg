@@ -23,7 +23,7 @@ def get_departures():
     return lst
 
 def draw(screen, lst):
-    base = Image.open("backdrop.png")
+    image = Image.new('RGB', (212, 104))
     image = ImageDraw.Draw(base)
 
     fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 15)
@@ -32,6 +32,17 @@ def draw(screen, lst):
         image.text((0,10+(20*i)), x['line'] + " " + x['direction'], font=fnt, fill=screen.YELLOW)
         image.text((180,10+(20*i)), str(x['minutes'])+"m", font=fnt, fill=screen.YELLOW)
     
+    palette = Image.new('P', (1, 1))
+    palette.putpalette(
+    [
+        255, 255, 255,   # 0 = White
+        0, 0, 0,         # 1 = Black
+        255, 0, 0,       # 2 = Red (255, 255, 0 for yellow)
+    ] + [0, 0, 0] * 253  # Zero fill the rest of the 256 colour palette
+    )
+
+    base = image.quantize(colors=3, palette=palette)
+
     screen.set_image(base)
     screen.set_border(screen.BLACK)
     screen.show()
