@@ -23,7 +23,7 @@ def get_departures():
     return lst
 
 def draw(screen, lst):
-    base = Image.new("P", (screen.WIDTH, screen.HEIGHT))
+    base = Image.open("backdrop.png")
     image = ImageDraw.Draw(base)
 
     fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 15)
