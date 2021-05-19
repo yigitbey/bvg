@@ -1,12 +1,9 @@
 from PIL import Image, ImageFont, ImageDraw
-from inky.auto import auto as inky_board
+from inky.auto import auto as get_board
 import requests
 import arrow
 
 
-def get_board():
-    inky = board()
-    return inky
 
 def get_departures():
     departures = requests.get("https://v5.bvg.transport.rest/stops/900000110017/departures").json()
