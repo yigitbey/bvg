@@ -18,7 +18,7 @@ def get_departures():
         if 0 < next_minutes < 60:
             lst.append({
                 'line': d['line']['name'], 
-                "direction":d['direction'],
+                "direction":d['direction'][:20],
                 "minutes":next_minutes,  
                 })
     lst.append({'line':'M0','direction':'oo','minutes':66})
@@ -28,7 +28,7 @@ def draw(screen, lst):
     base = Image.open("backdrop.png")
     image = ImageDraw.Draw(base)
 
-    fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 15)
+    fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 13)
 
     for i, x in enumerate(lst):
 
