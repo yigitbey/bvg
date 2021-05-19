@@ -9,7 +9,7 @@ def get_board():
     return inky
 
 def get_departures():
-    departures = requests.get("https://v3.bvg.transport.rest/stops/900000110017/departures").json()
+    departures = requests.get("https://v5.bvg.transport.rest/stops/900000110017/departures").json()
     lst = []
     
     for d in departures:
