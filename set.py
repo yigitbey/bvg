@@ -23,7 +23,7 @@ def get_departures():
     return lst
 
 def draw(screen, lst):
-    image = Image.new('RGB', (212, 104))
+    base = Image.new('RGB', (212, 104))
     image = ImageDraw.Draw(base)
 
     fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 15)
