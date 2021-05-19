@@ -12,7 +12,8 @@ def get_departures():
     for d in departures:
         now = arrow.now()
         next_dep = arrow.get(d['when'])
-        next_minutes = (next_dep - now).seconds/60
+        next_seconds = (next_dep - now).seconds
+        next_minutes = floor(next_seconds/60)
         if 0 < next_minutes < 60:
             lst.append({
                 'line': d['line']['name'], 
@@ -29,6 +30,7 @@ def draw(screen, lst):
     fnt = ImageFont.truetype('IBMPlexSans-SemiBold.ttf', 15)
 
     for i, x in enumerate(lst):
+
         image.text((0,10+(20*i)), x['line'] + " " + x['direction'], font=fnt, fill=screen.YELLOW)
         image.text((180,10+(20*i)), str(x['minutes'])+"m", font=fnt, fill=screen.YELLOW)
     
