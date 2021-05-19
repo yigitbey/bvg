@@ -35,6 +35,7 @@ def draw(screen, lst):
         image.text((0,10+(20*i)), x['line'] + " " + x['direction'], font=fnt, fill=screen.YELLOW)
         image.text((180,10+(20*i)), str(x['minutes'])+"m", font=fnt, fill=screen.YELLOW)
     
+    base.rotate(180)
     screen.set_image(base)
     screen.set_border(screen.BLACK)
     screen.show()
