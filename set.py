@@ -3,6 +3,7 @@ from inky.auto import auto as get_board
 import requests
 import arrow
 
+import math
 
 
 def get_departures():
@@ -13,7 +14,7 @@ def get_departures():
         now = arrow.now()
         next_dep = arrow.get(d['when'])
         next_seconds = (next_dep - now).seconds
-        next_minutes = floor(next_seconds/60)
+        next_minutes = math.floor(next_seconds/60)
         if 0 < next_minutes < 60:
             lst.append({
                 'line': d['line']['name'], 
